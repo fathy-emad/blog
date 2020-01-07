@@ -34,6 +34,7 @@
         {{--role feild--}}
         <div class="form-group">
              {!! Form::label('role_id','User Role : ')!!}
+
              {!! Form::select('role_id',[''=>'--choose user role--','1'=>'admin','2'=>'user'],null,['class'=>'form-control']) !!}
 
         </div>
@@ -42,7 +43,7 @@
         {{--status field--}}
         <div class="form-group">
             {!! Form::label('is_active','User active : ') !!}
-            {!! Form::select('is_active',[''=>'--choose activation--','1' =>'active','0' =>'not active'],null,['class'=>'form-control']) !!}
+            {!! Form::select('is_active',[''=>'--choose activation--','1'=>'active','0'=>'not active'],null,['class'=>'form-control']) !!}
         </div>
 
         {{--upload photo user--}}

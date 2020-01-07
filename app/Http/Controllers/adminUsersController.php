@@ -95,6 +95,7 @@ class adminUsersController extends Controller
     {
         //
         $user = User::findOrFail($id);
+
         return view('admin.users.edit',compact('user'));
     }
 

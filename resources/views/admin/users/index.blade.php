@@ -28,7 +28,7 @@
                 <td><img height="50px" src="images/{{$user->photo['path']}}" alt="{{$user->name}}"></td>
                 <td>{{$user->name}}</td>
                 <td>{{$user->email}}</td>
-                <td>{{$user->role->name}}</td>
+                <td>{{$user->role['name']}}</td>
                 <td>{{$user->is_active == 1 ? 'active' : 'not active'}}</td>
                 <td>{{$user->created_at->diffForHumans()}}</td>
                 <td>{{$user->updated_at->diffForHumans()}}</td>
