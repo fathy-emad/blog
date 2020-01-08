@@ -5,7 +5,12 @@
 @section('content')
     <h1>edit users</h1>
 
-    <div class="form-group">
+    <div class="col-sm-3">
+
+        <img height="200" class="img-circle" src="{{$user->photo_id>0?asset($user->photo['path']):'http://place-hold.it/50x50'}}" alt="userphoto">
+    </div>
+
+    <div class="col-sm-9">
         {!! Form::model($user,['method'=>'PATCH','route'=>['users.update',$user->id],'files'=>true]) !!}
 
         {{csrf_field()}}
@@ -24,13 +29,12 @@
         </div>
 
 
-        {{--password field--}}
+        password field
         <div class="form-group">
             {!! Form::label('password','User Password : ') !!}
-
             {!! Form::password('password',null,['class'=>'form-control']) !!}
         </div>
-        {{--role feild--}}
+        role feild
         <div class="form-group">
             {!! Form::label('role_id','User Role : ')!!}
             {!! Form::select('role_id',[''=>'--choose user role--','1'=>'admin','2'=>'user'],null,['class'=>'form-control']) !!}
@@ -45,9 +49,14 @@
         </div>
 
 
+        {{--upload photo user--}}
+        {!! Form::label('path','User photo : ') !!}
+        {!! Form::file('path') !!}
+
+
         {{--submit the form--}}
         <div class="form-group">
-            {!! Form::submit('Create User',['class'=>'btn btn-primary']) !!}
+            {!! Form::submit('update User',['class'=>'btn btn-primary']) !!}
         </div>
 
         @if ($errors->any())
