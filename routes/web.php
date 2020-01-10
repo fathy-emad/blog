@@ -11,7 +11,9 @@
 |
 */
 
+use App\Http\Middleware\admin;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
     return view('welcome');
@@ -21,8 +23,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::resource('/admin/users','adminUsersController')->middleware(admin::class);
+Route::resource('/admin/posts','adminPostController')->middleware(admin::class);
 
-Route::resource('/admin/users','adminUsersController');
+
 
 
 

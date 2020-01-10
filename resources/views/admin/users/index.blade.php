@@ -5,6 +5,10 @@
 
 @section('content')
 
+    @if(session()->has('deleted_user'))
+        <p class="bg-danger">{{Session('deleted_user')}}</p>
+        @endif
+
     <h1>users</h1>
 
     <table class="table">
@@ -32,7 +36,20 @@
                 <td>{{$user->is_active == 1 ? 'active' : 'not active'}}</td>
                 <td>{{$user->created_at->diffForHumans()}}</td>
                 <td>{{$user->updated_at->diffForHumans()}}</td>
-                <td><a class="btn btn-danger">delete</a> | <a href="{{route('users.edit',$user->id)}}" class="btn btn-primary">edit</a></td>
+                <td>
+
+                        <form method="POST" action="{{route('users.destroy',$user->id)}}">
+                            {{csrf_field()}}
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="submit" value="DELETE USER" class="btn btn-danger">
+                        </form>
+
+{{--                    {!! Form::open(['method'=>'DELETE','route'=>['users.index',$user->id]])!!}--}}
+{{--                        {{csrf_field()}}--}}
+{{--                        {!! Form::submit(['DELETE USER',['class'=>'btn btn-danger']]) !!}--}}
+{{--                    {!! Form::close() !!}--}}
+                    | <a href="{{route('users.edit',$user->id)}}" class="btn btn-primary">edit</a>
+                </td>
             </tr>
         </tbody>
         @endforeach

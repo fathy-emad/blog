@@ -54,15 +54,19 @@
             <!-- /.dropdown -->
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    <i class="fa fa-user fa-fw"></i>{{Auth::user()->name}} <i class="fa fa-caret-down"></i>
                 </a>
-                <ul class="dropdown-menu dropdown-user">
-                    <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                <ul class="dropdown-menu dropdown-user navbar-nav ml-auto">
+                    <li><a href="#"><i class="fa fa-user fa-fw navbar-item"></i> User Profile</a>
                     </li>
-                    <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                    <li><a href="#"><i class="fa fa-gear fa-fw nav-item"></i> Settings</a>
                     </li>
-                    <li class="divider"></li>
-                    <li><a href="{{ url('/logout') }}"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                     {{--<li class="divider"></li>--}}
+                    <li>
+                        <form action="{{route('logout')}}" method="POST">
+                            {{csrf_field()}}
+                            <input type="submit" value="LOGOUT">
+                        </form>
                     </li>
                 </ul>
                 <!-- /.dropdown-user -->
@@ -129,11 +133,6 @@
                             <li>
                                 <a href="{{route('users.create')}}">Create User</a>
                             </li>
-
-                            <li>
-                                <a href="/users/create">Edit User</a>
-                            </li>
-
                         </ul>
                         <!-- /.nav-second-level -->
                     </li>
@@ -142,11 +141,11 @@
                         <a href="#"><i class="fa fa-wrench fa-fw"></i> Posts<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="/posts">All Posts</a>
+                                <a href="{{route('posts.index')}}">All Posts</a>
                             </li>
 
                             <li>
-                                <a href="/posts/create">Create Post</a>
+                                <a href="{{route('posts.create')}}">Create Post</a>
                             </li>
 
                         </ul>

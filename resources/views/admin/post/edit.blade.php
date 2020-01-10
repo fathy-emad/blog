@@ -1,13 +1,17 @@
-
 @extends('layouts.admin')
 
 
 
 @section('content')
-    <h1>Create post</h1>
+    <h1>edit post</h1>
 
-    <div class="form-group">
-        {!! Form::open(['method'=>'POST','route'=>'posts.store','files'=>true]) !!}
+    <div class="col-sm-3">
+
+        <img height="200" class="img-circle" src="{{$post->photo_id>0?asset($post->photo['path']):'http://place-hold.it/50x50'}}" alt="userphoto">
+    </div>
+
+    <div class="col-sm-9">
+        {!! Form::model($post,['method'=>'PATCH','route'=>['posts.update',$post->id],'files'=>true]) !!}
 
         {{csrf_field()}}
 
@@ -32,7 +36,7 @@
 
         {{--submit the form--}}
         <div class="form-group">
-            {!! Form::submit('Create Post',['class'=>'btn btn-primary']) !!}
+            {!! Form::submit('update post',['class'=>'btn btn-primary']) !!}
         </div>
 
         @if ($errors->any())
@@ -47,7 +51,6 @@
 
         {!! Form::close() !!}
     </div>
-
 
 
 @endsection
