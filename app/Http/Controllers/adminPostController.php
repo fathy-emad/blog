@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\category;
 use App\Http\Requests\postsRequest;
 use App\Photo;
 use App\post;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -32,9 +34,10 @@ class adminPostController extends Controller
     public function create()
     {
         //
+        $cats = category::all();
 
-        return view('admin.post.create');
-    }
+        return view('admin.post.create',compact('cats'));
+   }
 
     /**
      * Store a newly created resource in storage.
@@ -63,6 +66,8 @@ class adminPostController extends Controller
         $userid = Auth::id();
 
         $inputs['user_id'] = $userid;
+
+        $inputs['category_id'] = $request->category_id;
 
 
 
@@ -112,18 +117,17 @@ class adminPostController extends Controller
         $inputs = $request->all();
         $post = post::FindOrFail($id);
         if ($request->hasFile('path')){
-            $file = $request->file('path')->getClientOriginalName();
-            $name = time() . $file;
-            $request->file('path')->move('admin/images',$name);
             if ($post->photo_id !== null){
                 unlink(public_path() . $post->photo->path);
                 $post->photo->delete();
             }
+            $file = $request->file('path')->getClientOriginalName();
+            $name = time() . $file;
+            $request->file('path')->move('admin/images',$name);
             $photo = photo::create(['path'=>$name]);
             $photo_id  = $photo->id;
             $inputs['photo_id'] = $photo_id;
         }
-
         $post->update($inputs);
         session()->flash('updatepost','post has beeen updated ya prince');
         return redirect(route('posts.index'));

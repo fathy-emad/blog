@@ -30,6 +30,6 @@ class HomeController extends Controller
        if($admin->is_active == 1 && $admin->role->name == 'admin'){
            return view('admin.admin');
        }
-        return view('home');
+        return redirect(route('post.index'));
     }
 }

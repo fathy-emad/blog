@@ -42,7 +42,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Home</a>
+            <a class="navbar-brand" href="{{route('post.index')}}">Home</a>
         </div>
         <!-- /.navbar-header -->
 
@@ -157,11 +157,11 @@
                         <a href="#"><i class="fa fa-wrench fa-fw"></i>Categories<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="/categories">All Categories</a>
+                                <a href="{{route('category.index')}}">All Categories</a>
                             </li>
 
                             <li>
-                                <a href="/categories/create">Create Category</a>
+                                <a href="{{route('category.create')}}">Create Category</a>
                             </li>
 
                         </ul>
@@ -170,14 +170,14 @@
 
 
                     <li>
-                        <a href="#"><i class="fa fa-wrench fa-fw"></i>Media<span class="fa arrow"></span></a>
+                        <a href="#"><i class="fa fa-wrench fa-fw"></i>comments<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="/media">All Media</a>
+                                <a href="{{route('comment.index')}}">All Comments</a>
                             </li>
 
                             <li>
-                                <a href="">Upload Media</a>
+                                <a href="">Edit Comment</a>
                             </li>
 
                         </ul>
@@ -185,6 +185,20 @@
                     </li>
 
 
+                    <li>
+                        <a href="#"><i class="fa fa-wrench fa-fw"></i>Replies<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="/media">All Replies</a>
+                            </li>
+
+                            <li>
+                                <a href="">Edit Replies</a>
+                            </li>
+
+                        </ul>
+                        <!-- /.nav-second-level -->
+                    </li>
 
 
 

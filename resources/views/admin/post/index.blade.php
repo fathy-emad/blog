@@ -24,11 +24,12 @@
     <table class="table">
         <thead class="table">
         <tr>
-            <th>id</th>
-            <th>user id</th>
-            <th>photo id</th>
+            <th>#id</th>
+            <th>user</th>
+            <th>photo</th>
             <th>title</th>
             <th>body</th>
+            <th>category</th>
             <th>created_at</th>
             <th>updated_at</th>
             <th>control</th>
@@ -38,12 +39,12 @@
             @foreach($posts as $post)
                 <tbody>
                 <tr>
-    {{--                $user->photo_id>0?asset($user->photo['path']):'http://place-hold.it/50x50--}}
                     <td>{{$post->id}}</td>
-                    <td>{{$post->user_id}}</td>
+                    <td>{{$post->user->name}}</td>
                     <td><img height="50px" class="img-rounded" src="{{$post->photo_id >0 ?asset($post->photo->path):'http://placehold.it/0x50'}}"></td>
                     <td>{{$post->title}}</td>
                     <td>{{$post->body}}</td>
+                    <td>{{$post->category->name}}</td>
                     <td>{{$post->created_at->diffForHumans()}}</td>
                     <td>{{$post->updated_at->diffForHumans()}}</td>
                     <td>

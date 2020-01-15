@@ -155,6 +155,10 @@ class adminUsersController extends Controller
 
         unlink(public_path() . $user->photo['path']);
 
+        $user->photo()->delete();
+
+        $user->post()->delete();
+
         $user->delete();
 
         return redirect(route('users.index'));

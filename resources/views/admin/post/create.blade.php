@@ -29,6 +29,13 @@
         {!! Form::label('path','Post photo : ') !!}
         {!! Form::file('path') !!}
 
+        <label for="category_id">select category :</label>
+        <select class="form-control" name="category_id">
+            @foreach($cats as $cat)
+            <option  value="{{$cat->id}}">{{$cat->name}}</option>
+            @endforeach
+        </select>
+
 
         {{--submit the form--}}
         <div class="form-group">
